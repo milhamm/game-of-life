@@ -26,9 +26,9 @@ public class Game {
         for (int i = 1; i < grid.getGridLength() - 1; i++) {
             for (int j = 1; j < grid.getGridLength() - 1; j++) {
                 int numberOfNeighbour = grid.countNeighbour(i, j);
-                if (grid.getCell(i, j) == Cell.DEAD_CELL && numberOfNeighbour == 3){
+                if (grid.isCurrentDeadCell(i, j) && numberOfNeighbour == 3){
                     nextGrid.setCell(Cell.LIVING_CELL, i, j);
-                } else if (grid.getCell(i, j) == Cell.LIVING_CELL && numberOfNeighbour >= 2 && numberOfNeighbour <= 3){
+                } else if (grid.isCurrentLivingCell(i, j) && numberOfNeighbour >= 2 && numberOfNeighbour <= 3){
                     nextGrid.setCell(Cell.LIVING_CELL, i, j);
                 } else {
                     nextGrid.setCell(Cell.DEAD_CELL, i, j);

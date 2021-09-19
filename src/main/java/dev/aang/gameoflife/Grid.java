@@ -65,4 +65,12 @@ public class Grid {
         return this.grid.length;
     }
 
+    public boolean isCurrentLivingCell(int x, int y){
+        return getCell(x, y) == Cell.LIVING_CELL;
+    }
+    
+    public boolean isCurrentDeadCell(int x, int y){
+        return getCell(x, y) == Cell.DEAD_CELL;
+    }
+
 }
