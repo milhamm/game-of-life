@@ -9,12 +9,6 @@ public class Grid {
     int gridSize;
     int offset;
 
-    public Grid(){
-        this.grid = new Cell[6 * OFFSET_GRID][6 * OFFSET_GRID];
-        this.gridSize = 6;
-        this.offset = ((6 * OFFSET_GRID - 6) / 2) - 1;
-    }
-
     public Grid setGridSize(int gridSize){
         this.grid = new Cell[gridSize * OFFSET_GRID][gridSize * OFFSET_GRID];
         this.gridSize = gridSize;
@@ -45,7 +39,7 @@ public class Grid {
         }
     }
 
-    public int countNeighbour(int x, int y){
+    public int countLivingNeighbour(int x, int y){
         int numberOfNeighbour = 0;
         final int[][] moves = {{0, 1}, {1, 1}, {1, 0}, {1, -1}, {0, -1}, {-1, 1}, {-1, 0}, {-1, -1}};
 
@@ -53,7 +47,7 @@ public class Grid {
             int moveX = move[0] + x;
             int moveY = move[1] + y;
 
-            if (getCell(moveX, moveY) == Cell.LIVING_CELL){
+            if (isCurrentLivingCell(moveX, moveY)){
                 numberOfNeighbour ++;
             }
         }
