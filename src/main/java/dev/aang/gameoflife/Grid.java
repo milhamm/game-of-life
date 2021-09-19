@@ -45,7 +45,7 @@ public class Grid {
             int moveX = move[0] + x;
             int moveY = move[1] + y;
 
-            if (getCell(moveX, moveY) == Cell.DEAD_CELL){
+            if (getCell(moveX, moveY) == Cell.LIVING_CELL){
                 numberOfNeighbour ++;
             }
         }
