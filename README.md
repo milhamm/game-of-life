@@ -1,8 +1,8 @@
-# Conway Game of Life
+# Conway's Game of Life
 
-Implementation of [this](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) game made using Java
+Implementation of [Conway's Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) made using Java
 
-##Run
+## Run
 
 ```
 ./gradlew run
