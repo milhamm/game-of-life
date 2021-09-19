@@ -1,22 +1,26 @@
 package dev.aang.gameoflife;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
 public class Game {
 
-    Grid grid = new Grid();
+    Grid grid;
+    int gridSize;
+
+    public Game(int gridSize){
+        this.gridSize = gridSize;
+        this.grid = new Grid().setGridSize(gridSize).initializeGrid();
+    }
 
     public void start(){
-        grid.setGridSize(20)
-                .initializeGrid()
-                .addLivingCell(2, 0)
-                .addLivingCell(2, 1)
-                .addLivingCell(2, 2)
-                .addLivingCell(1, 2)
-                .addLivingCell(0, 1);
-
-        for (int i = 0; i < 10; i++) {
+        final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
+        executorService.scheduleAtFixedRate(()->{
+            clearConsole();
             evolve();
             grid.displayGrid();
-        }
+        }, 0, 1, TimeUnit.SECONDS);
     }
 
     private void evolve(){
@@ -37,5 +41,15 @@ public class Game {
         }
 
         grid = nextGrid;
+    }
+
+    public Game addLivingCell(int x, int y){
+        this.grid.addLivingCell(x, y);
+        return this;
+    }
+
+    private void clearConsole(){
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
     }
 }
