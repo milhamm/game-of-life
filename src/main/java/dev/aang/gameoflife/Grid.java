@@ -37,6 +37,22 @@ public class Grid {
         }
     }
 
+    public int countCurrentNeighbour(int x, int y){
+        int numberOfNeighbour = 0;
+        final int[][] moves = {{0, 1}, {1, 1}, {1, 0}, {1, -1}, {0, -1}, {-1, 1}, {-1, 0}, {-1, -1}};
+
+        for (int[] move: moves){
+            int moveX = move[0] + x;
+            int moveY = move[1] + y;
+
+            if (getCell(moveX, moveY) == Cell.DEAD_CELL){
+                numberOfNeighbour ++;
+            }
+        }
+
+        return numberOfNeighbour;
+    }
+
     public Cell getCell(int x, int y){
         return this.grid[x][y];
     }
