@@ -61,4 +61,8 @@ public class Grid {
         this.grid[x][y] = value;
     }
 
+    public int getGridLength(){
+        return this.grid.length;
+    }
+
 }
