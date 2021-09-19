@@ -5,11 +5,11 @@ public class Grid {
     public Cell[][] grid;
 
     public Grid(){
-        this.grid = new Cell[5][5];
+        this.grid = new Cell[6][6];
     }
 
     public Grid setGridSize(int gridSize){
-        this.grid = new Cell[gridSize][gridSize];
+        this.grid = new Cell[gridSize + 1][gridSize + 1];
         return this;
     }
 
@@ -24,20 +24,20 @@ public class Grid {
     }
 
     public Grid addLivingCell(int x, int y){
-        setCell(Cell.LIVING_CELL, x, y);
+        setCell(Cell.LIVING_CELL, x + 1, y + 1);
         return this;
     }
 
     public void displayGrid(){
-        for (int i = 0; i < this.grid.length; i++) {
-            for (int j = 0; j < this.grid[i].length; j++) {
-                System.out.printf("%s ", getCell(i, j));
+        for (int i = 1; i < this.grid.length - 1; i++) {
+            for (int j = 1; j < this.grid[i].length - 1; j++) {
+                System.out.printf("%s ", getCell(j, i));
             }
             System.out.println();
         }
     }
 
-    public int countCurrentNeighbour(int x, int y){
+    public int countNeighbour(int x, int y){
         int numberOfNeighbour = 0;
         final int[][] moves = {{0, 1}, {1, 1}, {1, 0}, {1, -1}, {0, -1}, {-1, 1}, {-1, 0}, {-1, -1}};
 

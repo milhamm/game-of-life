@@ -7,11 +7,11 @@ public class Game {
     public void start(){
         grid.setGridSize(20)
                 .initializeGrid()
+                .addLivingCell(2, 0)
                 .addLivingCell(2, 1)
                 .addLivingCell(2, 2)
-                .addLivingCell(2, 3)
-                .addLivingCell(1, 3)
-                .addLivingCell(0, 2)
+                .addLivingCell(1, 2)
+                .addLivingCell(0, 1)
                 .displayGrid();
 
     }
