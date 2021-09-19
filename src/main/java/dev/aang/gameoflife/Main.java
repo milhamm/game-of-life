@@ -2,7 +2,7 @@ package dev.aang.gameoflife;
 
 public class Main {
     public static void main(String[] args) {
-        Game game = new Game(12);
-        game.addPatterns(Patterns.GLIDER).start();
+        Game game = new Game(38);
+        game.addPatterns(Pattern.GLIDER_GUN).start();
     }
 }
