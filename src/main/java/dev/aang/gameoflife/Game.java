@@ -16,16 +16,16 @@ public class Game {
 
     public void start(){
         final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
-        executorService.scheduleAtFixedRate(()->{
+        executorService.scheduleAtFixedRate(() -> {
             clearConsole();
             evolve();
             grid.displayGrid();
-        }, 0, 1, TimeUnit.SECONDS);
+        }, 0, 1000, TimeUnit.MILLISECONDS);
     }
 
     private void evolve(){
         Grid nextGrid = new Grid();
-        nextGrid.setGridSize(20).initializeGrid();
+        nextGrid.setGridSize(this.gridSize).initializeGrid();
 
         for (int i = 1; i < grid.getGridLength() - 1; i++) {
             for (int j = 1; j < grid.getGridLength() - 1; j++) {

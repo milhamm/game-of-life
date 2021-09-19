@@ -2,7 +2,7 @@ package dev.aang.gameoflife;
 
 public class Main {
     public static void main(String[] args) {
-        Game game = new Game(10);
+        Game game = new Game(6);
         game.addLivingCell(2, 0)
                 .addLivingCell(2, 1)
                 .addLivingCell(2, 2)

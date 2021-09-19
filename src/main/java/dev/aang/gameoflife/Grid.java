@@ -1,39 +1,43 @@
 package dev.aang.gameoflife;
 
+import java.util.function.Consumer;
+
+interface Callback{
+    void call(int i, int j);
+}
+
 public class Grid {
+
+    public static final int OFFSET_GRID = 2;
 
     public Cell[][] grid;
 
     public Grid(){
-        this.grid = new Cell[6][6];
+        this.grid = new Cell[6 * OFFSET_GRID][6 * OFFSET_GRID];
     }
 
     public Grid setGridSize(int gridSize){
-        this.grid = new Cell[gridSize + 1][gridSize + 1];
+        this.grid = new Cell[gridSize * OFFSET_GRID][gridSize * OFFSET_GRID];
         return this;
     }
 
     public Grid initializeGrid(){
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[i].length; j++) {
-                Cell valueToBeInserted = getCell(i, j) != Cell.LIVING_CELL ? Cell.DEAD_CELL : Cell.LIVING_CELL;
-                setCell(valueToBeInserted, i, j);
+                setCell(Cell.DEAD_CELL, i, j);
             }
         }
         return this;
     }
 
     public void addLivingCell(int x, int y){
-        setCell(Cell.LIVING_CELL, x + 1, y + 1);
+        setCell(Cell.LIVING_CELL, x + OFFSET_GRID, y + OFFSET_GRID);
     }
 
     public void displayGrid(){
-        for (int i = 1; i < this.grid.length - 1; i++) {
-            for (int j = 1; j < this.grid[i].length - 1; j++) {
-                System.out.printf("%s ", getCell(j, i));
-            }
-            System.out.println();
-        }
+        iterateInnerGrid((x, y) -> {
+            System.out.printf("%s ", getCell(y, x));
+        });
     }
 
     public int countNeighbour(int x, int y){
@@ -50,6 +54,15 @@ public class Grid {
         }
 
         return numberOfNeighbour;
+    }
+
+    public void iterateInnerGrid(Callback callback){
+        for (int i = OFFSET_GRID; i < this.grid.length - OFFSET_GRID - 2; i++) {
+            for (int j = OFFSET_GRID; j < this.grid[i].length - OFFSET_GRID - 2; j++) {
+                callback.call(i, j);
+            }
+            System.out.println();
+        }
     }
 
     public Cell getCell(int x, int y){

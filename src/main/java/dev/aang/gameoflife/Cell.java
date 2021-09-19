@@ -2,7 +2,8 @@ package dev.aang.gameoflife;
 
 public enum Cell {
     LIVING_CELL("#"),
-    DEAD_CELL(".");
+    DEAD_CELL("."),
+    NEUTRAL_CELL("+");
 
     public final String label;
 
