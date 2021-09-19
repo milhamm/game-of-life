@@ -1,23 +1,24 @@
 package dev.aang.gameoflife;
 
-import java.util.function.Consumer;
-
-interface Callback{
-    void call(int i, int j);
-}
 
 public class Grid {
 
-    public static final int OFFSET_GRID = 2;
+    public static final int OFFSET_GRID = 3;
 
     public Cell[][] grid;
+    int gridSize;
+    int offset;
 
     public Grid(){
         this.grid = new Cell[6 * OFFSET_GRID][6 * OFFSET_GRID];
+        this.gridSize = 6;
+        this.offset = ((6 * OFFSET_GRID - 6) / 2) - 1;
     }
 
     public Grid setGridSize(int gridSize){
         this.grid = new Cell[gridSize * OFFSET_GRID][gridSize * OFFSET_GRID];
+        this.gridSize = gridSize;
+        this.offset = ((gridSize * OFFSET_GRID - gridSize) / 2) - 1;
         return this;
     }
 
@@ -30,14 +31,18 @@ public class Grid {
         return this;
     }
 
-    public void addLivingCell(int x, int y){
-        setCell(Cell.LIVING_CELL, x + OFFSET_GRID, y + OFFSET_GRID);
+    public Grid addLivingCell(int x, int y){
+        setCell(Cell.LIVING_CELL, x + offset, y + offset);
+        return this;
     }
 
     public void displayGrid(){
-        iterateInnerGrid((x, y) -> {
-            System.out.printf("%s ", getCell(y, x));
-        });
+        for (int i = offset; i < this.grid.length - offset - 2; i++) {
+            for (int j = offset; j < this.grid[i].length - offset - 2; j++) {
+                System.out.printf("%s ", getCell(j, i));
+            }
+            System.out.println();
+        }
     }
 
     public int countNeighbour(int x, int y){
@@ -54,15 +59,6 @@ public class Grid {
         }
 
         return numberOfNeighbour;
-    }
-
-    public void iterateInnerGrid(Callback callback){
-        for (int i = OFFSET_GRID; i < this.grid.length - OFFSET_GRID - 2; i++) {
-            for (int j = OFFSET_GRID; j < this.grid[i].length - OFFSET_GRID - 2; j++) {
-                callback.call(i, j);
-            }
-            System.out.println();
-        }
     }
 
     public Cell getCell(int x, int y){

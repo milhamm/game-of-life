@@ -20,7 +20,7 @@ public class Game {
             clearConsole();
             evolve();
             grid.displayGrid();
-        }, 0, 1000, TimeUnit.MILLISECONDS);
+        }, 0, 500, TimeUnit.MILLISECONDS);
     }
 
     private void evolve(){
@@ -45,6 +45,80 @@ public class Game {
 
     public Game addLivingCell(int x, int y){
         this.grid.addLivingCell(x, y);
+        return this;
+    }
+
+    public Game addPatterns(Patterns patterns){
+        switch (patterns){
+            case BLOCK:
+                this.grid.addLivingCell(0, 0)
+                        .addLivingCell(0,1)
+                        .addLivingCell(1,0)
+                        .addLivingCell(1,1);
+                break;
+            case GLIDER:
+                this.grid.addLivingCell(0, 1)
+                        .addLivingCell(1, 2)
+                        .addLivingCell(2, 2)
+                        .addLivingCell(2, 0)
+                        .addLivingCell(2, 1);
+                break;
+            case BEE_HIVE:
+                this.grid.addLivingCell(2, 1)
+                        .addLivingCell(1, 2)
+                        .addLivingCell(1, 3)
+                        .addLivingCell(3, 2)
+                        .addLivingCell(3, 3)
+                        .addLivingCell(2, 4);
+                break;
+            case BOAT:
+                this.grid.addLivingCell(1, 1)
+                        .addLivingCell(1, 2)
+                        .addLivingCell(2, 1)
+                        .addLivingCell(2, 3)
+                        .addLivingCell(3, 2);
+                break;
+            case TUB:
+                this.grid.addLivingCell(2, 1)
+                        .addLivingCell(1, 2)
+                        .addLivingCell(3, 2)
+                        .addLivingCell(2, 3);
+                break;
+            case BLINKER:
+                this.grid.addLivingCell(2, 2)
+                        .addLivingCell(1, 2)
+                        .addLivingCell(3, 2);
+                break;
+            case TOAD_1:
+                this.grid.addLivingCell(1, 3)
+                        .addLivingCell(2, 2)
+                        .addLivingCell(2, 3)
+                        .addLivingCell(3, 2)
+                        .addLivingCell(3, 3)
+                        .addLivingCell(4, 1);
+                break;
+            case BEACON:
+                this.grid.addLivingCell(1, 1)
+                        .addLivingCell(1, 2)
+                        .addLivingCell(2, 1)
+                        .addLivingCell(2, 2)
+                        .addLivingCell(3, 3)
+                        .addLivingCell(3, 4)
+                        .addLivingCell(4, 3)
+                        .addLivingCell(4,4 );
+                break;
+            case LWSS:
+                this.grid.addLivingCell(2, 3)
+                        .addLivingCell(2, 5)
+                        .addLivingCell(3, 2)
+                        .addLivingCell(4, 2)
+                        .addLivingCell(5, 2)
+                        .addLivingCell(6, 2)
+                        .addLivingCell(6, 3)
+                        .addLivingCell(6, 4)
+                        .addLivingCell(5, 5);
+                break;
+        }
         return this;
     }
 
