@@ -13,6 +13,16 @@ public class Grid {
         return this;
     }
 
+    public Grid initializeGrid(){
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[i].length; j++) {
+                Cell valueToBeInserted = getCurrentCell(i, j) != Cell.LIVING_CELL ? Cell.DEAD_CELL : Cell.LIVING_CELL;
+                setCurrentCell(valueToBeInserted, i, j);
+            }
+        }
+        return this;
+    }
+
     public void displayGrid(){
         for (int i = 0; i < this.grid.length; i++) {
             for (int j = 0; j < this.grid[i].length; j++) {
@@ -22,8 +32,12 @@ public class Grid {
         }
     }
 
-    private Cell getCurrentCell(int x, int y){
+    public Cell getCurrentCell(int x, int y){
         return this.grid[x][y];
+    }
+
+    public void setCurrentCell(Cell value, int x, int y){
+        this.grid[x][y] = value;
     }
 
 }
