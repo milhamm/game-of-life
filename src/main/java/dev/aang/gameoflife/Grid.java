@@ -23,9 +23,8 @@ public class Grid {
         return this;
     }
 
-    public Grid addLivingCell(int x, int y){
+    public void addLivingCell(int x, int y){
         setCell(Cell.LIVING_CELL, x + 1, y + 1);
-        return this;
     }
 
     public void displayGrid(){
@@ -68,7 +67,7 @@ public class Grid {
     public boolean isCurrentLivingCell(int x, int y){
         return getCell(x, y) == Cell.LIVING_CELL;
     }
-    
+
     public boolean isCurrentDeadCell(int x, int y){
         return getCell(x, y) == Cell.DEAD_CELL;
     }
